@@ -13,7 +13,7 @@ const AddCoffee = () => {
         console.log(newCoffee);
 
         // sent coffee data in backend
-        fetch('https://coffee-store-server-one-psi.vercel.app/coffees', {
+        fetch('https://coffee-store-client-eta-one.vercel.app/coffees', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

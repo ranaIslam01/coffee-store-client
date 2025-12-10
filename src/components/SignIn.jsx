@@ -23,7 +23,7 @@ const SignIn = () => {
                 lastSignInTime : result.user?.metadata?.lastSignInTime
             }
 
-            fetch('https://coffee-store-server-one-psi.vercel.app/users', {
+            fetch('https://coffee-store-client-eta-one.vercel.app/users', {
                 method: 'PATCH',
                 headers: {
                     'content-type': 'application/json'

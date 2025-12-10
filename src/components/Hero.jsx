@@ -9,7 +9,7 @@ const Hero = () => {
     return (
         <>
         <div className='h-screen bg-cover bg-center px-[100px] flex items-center justify-end' style={{background: `url(${heroBg})`}}>
-            <div>
+            <div >
                 <h1 className='text-[55px] rancho text-white my-text'>Would you like a Cup of Delicious Coffee?</h1>
                 <p className='text-white text-base mt-2'>It's coffee time - Sip & Savor - Relaxation in every sip! Get the nostalgia back!! Your companion of <br /> every moment!!! Enjoy the beautiful moments and make them memorable.</p>
                 <button className='text-xl text-[#242222] my-text mt-8 rancho cursor-pointer py-3 px-5 bg-[#E3B577] rounded-lg'>Learn More</button>

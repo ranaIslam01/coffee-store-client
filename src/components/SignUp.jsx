@@ -31,7 +31,7 @@ const SignUp = () => {
             }
 
             // save profile info in db
-            fetch('https://coffee-store-server-one-psi.vercel.app/users', {
+            fetch('https://coffee-store-client-eta-one.vercel.app/users', {
                 method: 'POST', 
                 headers: {
                     "content-type": "application/json"
