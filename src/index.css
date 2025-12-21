@@ -1,1 +1,21 @@
-@import 'tailwindcss';
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&family=Rancho&display=swap');
+@import "tailwindcss";
+
+.rancho{
+  font-family: "Rancho", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+body{
+  font-family: "Raleway", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: normal;
+  font-style: normal;
+}
+.my-text {
+    text-shadow: 2px 2px 4px rgba(51, 26, 21, 1);
+}
+.active{
+  text-decoration: underline;
+  color: #E3B577;
+}

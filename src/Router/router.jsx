@@ -8,7 +8,11 @@ export const router = createBrowserRouter([
     path: "/",
     Component: MainLayout,
     children: [
-      {index:true, Component: Home},
+      {
+        index: true,
+        loader: () => fetch("http://localhost:3000/coffees"),
+        Component: Home,
+      },
       {
         path: "addCoffee",
         Component: AddCoffee,
@@ -16,7 +20,7 @@ export const router = createBrowserRouter([
       {
         path: "updateCoffee",
         Component: UpdateCoffee,
-      }
-    ]
+      },
+    ],
   },
 ]);
