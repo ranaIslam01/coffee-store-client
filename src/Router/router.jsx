@@ -7,6 +7,7 @@ import SignIn from "../Components/SignIn";
 import SignUp from "../Components/SignUp";
 import Users from "../Components/Users";
 import CoffeeDetails from "../Components/CoffeeDetails";
+import ErrorPage from "../Components/ErrorPage";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -20,6 +21,10 @@ export const router = createBrowserRouter([
       {
         path: "addCoffee",
         Component: AddCoffee,
+      },
+      {
+        path:"*",
+        Component: ErrorPage,
       },
       {
         path: "coffee/:id",

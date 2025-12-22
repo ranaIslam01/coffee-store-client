@@ -4,7 +4,8 @@ import { CiCoffeeCup } from "react-icons/ci";
 import CoffeeCard from "./CoffeeCard";
 import InstagramImage from "./InstagramImage";
 import Hero from "./Hero";
-import { useLoaderData } from "react-router";
+import { Link, useLoaderData } from "react-router";
+import Contuct from "./Contuct";
 
 const Home = () => {
   const coffees = useLoaderData();
@@ -34,7 +35,7 @@ const Home = () => {
         {/* Add Coffee Button UI only */}
         <div className="flex justify-center items-center">
           <button className="flex items-center py-3 px-5 border-2 border-[#331A15] rounded-lg cursor-pointer bg-[#E3B577]">
-            <p className="text-xl rancho my-text">Add Coffee</p>
+            <Link to="/addCoffee"><p className="text-xl rancho my-text">Add Coffee</p></Link>
             <CiCoffeeCup className="text-2xl" />
           </button>
         </div>
@@ -49,6 +50,9 @@ const Home = () => {
 
       <div>
         <InstagramImage />
+      </div>
+      <div>
+        <Contuct />
       </div>
     </>
   );

@@ -29,7 +29,7 @@ const UpdateCoffee = () => {
       >
         {/* Back Button */}
         <Link to="/">
-          <button className="flex gap-3 items-center px-5 py-3 rounded-xl hover:bg-[#E3B577] duration-500 cursor-pointer">
+          <button className="flex gap-3 items-center px-5 rounded-xl hover:bg-[#E3B577] duration-500 cursor-pointer">
             <IoMdArrowBack className="text-xl" />
             <p className="text-xl rancho text-[#374151] my-text">
               Back To Home
@@ -38,7 +38,7 @@ const UpdateCoffee = () => {
         </Link>
 
         {/* Update Coffee Form */}
-        <div className="px-6 lg:px-28 py-8 lg:py-17.5 bg-[#F4F3F0] mt-8 rounded-2xl">
+        <div className="px-6 lg:px-28 py-8 lg:py-10 bg-[#F4F3F0] mt-8 rounded-2xl">
           <h1 className="text-center text-2xl lg:text-[56px] text-[#374151] my-text rancho">
             Update Existing Coffee Details
           </h1>

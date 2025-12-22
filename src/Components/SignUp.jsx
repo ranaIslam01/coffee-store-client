@@ -11,7 +11,7 @@ const SignUp = () => {
                 {/* Back Button */}
                 <button className='flex gap-3 items-center px-5 py-3 rounded-xl hover:bg-[#E3B577] duration-500 cursor-pointer'>
                     <IoMdArrowBack className='text-xl' />
-                    <p className='text-xl rancho text-[#374151] my-text'>Back To Home</p>
+                    <Link to="/" className='text-xl rancho text-[#374151] my-text'>Back To Home</Link>
                 </button>
 
                 {/* SignUp Form */}

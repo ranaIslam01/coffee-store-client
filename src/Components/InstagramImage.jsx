@@ -11,7 +11,7 @@ import image8 from '../assets/images/cups/Rectangle 16.png'
 
 const InstagramImage = () => {
     return (
-        <div className='px-[15%] mb-28'>
+        <div className='px-[15%] mb-10'>
             <p className='text-center text-xl text-[#1B1A1A]'>Follow Us Now</p>
             <h1 className='mt-2 text-[56px] rancho my-text text-center'>Follow on Instagram</h1>
             <div className='grid md:grid-cols-2 gird-cols-1 lg:grid-cols-4 mt-10 gap-6'>
