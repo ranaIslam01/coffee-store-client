@@ -23,7 +23,7 @@ export const router = createBrowserRouter([
         Component: AddCoffee,
       },
       {
-        path:"*",
+        path: "*",
         Component: ErrorPage,
       },
       {
@@ -34,21 +34,22 @@ export const router = createBrowserRouter([
       },
       {
         path: "updateCoffee/:id",
+        loader: ({ params }) =>
+          fetch(`http://localhost:3000/coffees/${params.id}`),
         Component: UpdateCoffee,
       },
       {
-        path:"signin",
+        path: "signin",
         Component: SignIn,
       },
       {
-        path:"signup",
+        path: "signup",
         Component: SignUp,
       },
       {
-        path:"users",
+        path: "users",
         Component: Users,
-      }
-      
+      },
     ],
   },
 ]);

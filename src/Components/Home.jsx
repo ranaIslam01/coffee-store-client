@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import cardBg from "../assets/images/more/cards.png";
 import { CiCoffeeCup } from "react-icons/ci";
 import CoffeeCard from "./CoffeeCard";
@@ -8,7 +8,8 @@ import { Link, useLoaderData } from "react-router";
 import Contuct from "./Contuct";
 
 const Home = () => {
-  const coffees = useLoaderData();
+  const initialCoffees = useLoaderData();
+  const [coffees, setCoffees] = useState(initialCoffees);
   console.log(coffees);
 
   return (
@@ -35,15 +36,22 @@ const Home = () => {
         {/* Add Coffee Button UI only */}
         <div className="flex justify-center items-center">
           <button className="flex items-center py-3 px-5 border-2 border-[#331A15] rounded-lg cursor-pointer bg-[#E3B577]">
-            <Link to="/addCoffee"><p className="text-xl rancho my-text">Add Coffee</p></Link>
+            <Link to="/addCoffee">
+              <p className="text-xl rancho my-text">Add Coffee</p>
+            </Link>
             <CiCoffeeCup className="text-2xl" />
           </button>
         </div>
 
         {/* Coffee Cards */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-12">
-          {coffees.map((coffee, idx) => (
-            <CoffeeCard key={idx} coffee={coffee} />
+          {coffees?.map((coffee, idx) => (
+            <CoffeeCard
+              key={idx}
+              coffees={coffees}
+              setCoffees={setCoffees}
+              coffee={coffee}
+            />
           ))}
         </div>
       </div>

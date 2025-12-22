@@ -1,26 +1,48 @@
 import React from "react";
 import coffeeBg from "../assets/images/more/coffeeBg.png";
 import { IoMdArrowBack } from "react-icons/io";
-import { Link } from "react-router";
+import { Link, useLoaderData } from "react-router";
+import Swal from "sweetalert2";
 
 const UpdateCoffee = () => {
-  // Static placeholder data
-  const coffee = {
-    name: "Cappuccino",
-    quantity: "20",
-    supplier: "Coffee Supplier",
-    taste: "Rich & Bold",
-    price: "$5",
-    details: "Smooth and aromatic",
-    photo: "https://via.placeholder.com/150",
+  const { _id, name, photo, price, taste, supplier, details, quantity } =
+    useLoaderData();
+
+  const handleUpdateCoffee = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const formData = new FormData(form);
+    const updatedCoffee = Object.fromEntries(formData.entries());
+    console.log("update coffee", updatedCoffee);
+
+    //  send updated coffee
+
+    fetch(`http://localhost:3000/coffees/${_id}`, {
+      method: "PUT",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(updatedCoffee),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.modifiedCount) {
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "Coffee updated successfully",
+            showConfirmButton: false,
+            timer: 1400,
+          });
+        }
+        console.log("after update data", data);
+      });
   };
 
-  const { name, photo, price, taste, supplier, details, quantity } = coffee;
-
   return (
-    <div className="pt-18">
+    <div className="pt-6">
       <div
-        className="px-4 sm:px-6 md:px-[15%] py-12.5"
+        className="px-4 sm:px-6 md:px-[10%] lg:px-[15%] py-8 md:py-12.5"
         style={{
           backgroundImage: `url(${coffeeBg})`,
           backgroundSize: "cover",
@@ -31,112 +53,115 @@ const UpdateCoffee = () => {
         <Link to="/">
           <button className="flex gap-3 items-center px-5 rounded-xl hover:bg-[#E3B577] duration-500 cursor-pointer">
             <IoMdArrowBack className="text-xl" />
-            <p className="text-xl rancho text-[#374151] my-text">
+            <p className="text-sm md:text-xl rancho text-[#374151] my-text">
               Back To Home
             </p>
           </button>
         </Link>
 
         {/* Update Coffee Form */}
-        <div className="px-6 lg:px-28 py-8 lg:py-10 bg-[#F4F3F0] mt-8 rounded-2xl">
-          <h1 className="text-center text-2xl lg:text-[56px] text-[#374151] my-text rancho">
+        <div className="px-4 sm:px-8 md:px-12 lg:px-28 py-8 lg:pb-10 lg:pt-0 bg-[#F4F3F0] mt-8 rounded-2xl">
+          <h1 className="text-center text-2xl sm:text-3xl md:text-[56px] text-[#374151] my-text rancho">
             Update Existing Coffee Details
           </h1>
-          <p className="text-lg text-[#1B1A1AB3] my-8 text-center mx-[7%]">
+          <p className="text-sm sm:text-base md:text-lg text-[#1B1A1AB3] my-6 md:my-8 text-center px-0 md:px-[7%]">
             It is a long established fact that a reader will be distracted by
             the readable content of a page when looking at its layout.
           </p>
-          <form className="flex flex-col gap-6">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              <div className="flex flex-col gap-4">
-                <label className="font-semibold text-xl text-[#1B1A1ACC]">
+          <form
+            onSubmit={handleUpdateCoffee}
+            className="flex flex-col gap-4 md:gap-6"
+          >
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+              <div className="flex flex-col gap-3 md:gap-4">
+                <label className="font-semibold text-base md:text-xl text-[#1B1A1ACC]">
                   Name
                 </label>
                 <input
-                  className="py-3 px-3 bg-white rounded-lg w-full outline-none"
+                  name="name"
+                  className="py-2 md:py-3 px-3 bg-white rounded-lg w-full outline-none"
                   type="text"
                   defaultValue={name}
-                  placeholder="Enter Coffee Name"
                 />
               </div>
-              <div className="flex flex-col gap-4">
-                <label className="font-semibold text-xl text-[#1B1A1ACC]">
+              <div className="flex flex-col gap-3 md:gap-4">
+                <label className="font-semibold text-base md:text-xl text-[#1B1A1ACC]">
                   Quantity
                 </label>
                 <input
-                  className="py-3 px-3 bg-white rounded-lg w-full outline-none"
+                  name="quantity"
+                  className="py-2 md:py-3 px-3 bg-white rounded-lg w-full outline-none"
                   type="text"
                   defaultValue={quantity}
-                  placeholder="Enter Coffee Quantity"
                 />
               </div>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              <div className="flex flex-col gap-4">
-                <label className="font-semibold text-xl text-[#1B1A1ACC]">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+              <div className="flex flex-col gap-3 md:gap-4">
+                <label className="font-semibold text-base md:text-xl text-[#1B1A1ACC]">
                   Supplier
                 </label>
                 <input
-                  className="py-3 px-3 bg-white rounded-lg w-full outline-none"
+                  name="supplier"
+                  className="py-2 md:py-3 px-3 bg-white rounded-lg w-full outline-none"
                   type="text"
                   defaultValue={supplier}
-                  placeholder="Enter Coffee Supplier"
                 />
               </div>
-              <div className="flex flex-col gap-4">
-                <label className="font-semibold text-xl text-[#1B1A1ACC]">
+              <div className="flex flex-col gap-3 md:gap-4">
+                <label className="font-semibold text-base md:text-xl text-[#1B1A1ACC]">
                   Taste
                 </label>
                 <input
-                  className="py-3 px-3 bg-white rounded-lg w-full outline-none"
+                  name="taste"
+                  className="py-2 md:py-3 px-3 bg-white rounded-lg w-full outline-none"
                   type="text"
                   defaultValue={taste}
-                  placeholder="Enter Coffee Taste"
                 />
               </div>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              <div className="flex flex-col gap-4">
-                <label className="font-semibold text-xl text-[#1B1A1ACC]">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+              <div className="flex flex-col gap-3 md:gap-4">
+                <label className="font-semibold text-base md:text-xl text-[#1B1A1ACC]">
                   Price
                 </label>
                 <input
-                  className="py-3 px-3 bg-white rounded-lg w-full outline-none"
+                  name="price"
+                  className="py-2 md:py-3 px-3 bg-white rounded-lg w-full outline-none"
                   type="text"
                   defaultValue={price}
-                  placeholder="Enter Coffee Price"
                 />
               </div>
-              <div className="flex flex-col gap-4">
-                <label className="font-semibold text-xl text-[#1B1A1ACC]">
+              <div className="flex flex-col gap-3 md:gap-4">
+                <label className="font-semibold text-base md:text-xl text-[#1B1A1ACC]">
                   Details
                 </label>
                 <input
-                  className="py-3 px-3 bg-white rounded-lg w-full outline-none"
+                  name="details"
+                  className="py-2 md:py-3 px-3 bg-white rounded-lg w-full outline-none"
                   type="text"
                   defaultValue={details}
-                  placeholder="Enter Coffee Details"
                 />
               </div>
             </div>
 
-            <div className="flex flex-col gap-4">
-              <label className="font-semibold text-xl text-[#1B1A1ACC]">
+            <div className="flex flex-col gap-3 md:gap-4">
+              <label className="font-semibold text-base md:text-xl text-[#1B1A1ACC]">
                 Photo URL
               </label>
               <input
-                className="py-3 px-3 bg-white rounded-lg w-full outline-none"
+                name="photo"
+                className="py-2 md:py-3 px-3 bg-white rounded-lg w-full outline-none"
                 type="text"
                 defaultValue={photo}
-                placeholder="Enter Photo URL"
               />
             </div>
 
             <button
-              type="button"
-              className="text-xl text-[#331A15] my-text border-2 border-[#331A15] rancho w-full py-3 rounded-lg bg-[#D2B48C] cursor-pointer"
+              type="submit"
+              className="text-base md:text-xl text-[#331A15] my-text border-2 border-[#331A15] rancho w-full py-2 md:py-3 rounded-lg bg-[#D2B48C] cursor-pointer hover:bg-[#c9a876] duration-300"
             >
               Update Coffee Details
             </button>
