@@ -7,12 +7,12 @@ const NavBar = () => {
   return (
     <nav
       style={{ backgroundImage: `url(${navbg})` }}
-      className="flex justify-between items-center px-[5%]"
+      className="flex justify-between items-center px-4 sm:px-6 md:px-[5%]"
     >
       {/* Logo */}
       <Link to="/" className="flex items-center gap-2 bg-cover bg-center">
-        <img className="h-14" src={logo} alt="Logo" />
-        <h1 className="rancho my-text text-3xl md:text-[48px] text-white">
+        <img className="h-10 md:h-14" src={logo} alt="Logo" />
+        <h1 className="rancho my-text text-2xl md:text-3xl lg:text-[48px] text-white">
           Espresso Emporium
         </h1>
       </Link>
@@ -35,12 +35,12 @@ const NavBar = () => {
       {/* Auth Buttons UI only */}
       <div className="flex items-center gap-4">
         <Link to="/signin">
-          <button className="py-3 px-10 cursor-pointer bg-white rancho my-text rounded-full">
+          <button className="py-2 px-4 md:py-3 md:px-10 cursor-pointer bg-white rancho my-text rounded-full">
             Sign In
           </button>
         </Link>
         <Link to="/signup">
-          <button className="py-3 px-10 cursor-pointer bg-white rancho my-text rounded-full">
+          <button className="py-2 px-4 md:py-3 md:px-10 cursor-pointer bg-white rancho my-text rounded-full">
             Sign Up
           </button>
         </Link>

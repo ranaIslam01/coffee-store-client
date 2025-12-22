@@ -1,7 +1,8 @@
 import React from "react";
 import coffeeBg from "../assets/images/more/coffeeBg.png";
 import { IoMdArrowBack } from "react-icons/io";
-import Swal from 'sweetalert2'
+import Swal from "sweetalert2";
+import { Link } from "react-router";
 
 const AddCoffee = () => {
   const handlesubmit = (e) => {
@@ -27,7 +28,7 @@ const AddCoffee = () => {
             icon: "success",
             draggable: true,
           });
-        //   form.reset();
+          //   form.reset();
         }
       });
   };
@@ -35,18 +36,23 @@ const AddCoffee = () => {
   return (
     <div className="pt-18">
       <div
-        className="px-[15%] py-12.5"
+        className="px-4 sm:px-6 md:px-[15%] py-12.5"
         style={{ background: `url(${coffeeBg})` }}
       >
         {/* Back Button UI only */}
-        <button className="flex gap-3 items-center px-5 py-3 rounded-xl hover:bg-[#E3B577] duration-500 cursor-pointer">
-          <IoMdArrowBack className="text-xl" />
-          <p className="text-xl rancho text-[#374151] my-text">Back To Home</p>
-        </button>
+
+        <Link to="/">
+          <button className="flex gap-3 items-center px-5 py-3 rounded-xl hover:bg-[#E3B577] duration-500 cursor-pointer">
+            <IoMdArrowBack className="text-xl" />
+            <p className="text-xl rancho text-[#374151] my-text">
+              Back To Home
+            </p>
+          </button>
+        </Link>
 
         {/* Form Container */}
-        <div className="px-28 py-17.5 bg-[#F4F3F0] mt-8 rounded-2xl">
-          <h1 className="text-center text-[56px] text-[#374151] my-text rancho">
+        <div className="px-6 md:px-28 py-8 md:py-17.5 bg-[#F4F3F0] mt-8 rounded-2xl">
+          <h1 className="text-center text-2xl md:text-[56px] text-[#374151] my-text rancho">
             Add New Coffee
           </h1>
 
@@ -59,13 +65,13 @@ const AddCoffee = () => {
 
           {/* UI Form (no submit logic) */}
           <form onSubmit={handlesubmit} className="flex flex-col gap-6">
-            <div className="grid grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="flex flex-col gap-4">
                 <label className="font-semibold text-xl text-[#1B1A1ACC]">
                   Name
                 </label>
                 <input
-                  name="coffeeName"
+                  name="name"
                   className="py-3 px-3 bg-white rounded-lg w-full outline-none"
                   type="text"
                   placeholder="Enter Coffee Name"
@@ -85,7 +91,7 @@ const AddCoffee = () => {
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="flex flex-col gap-4">
                 <label className="font-semibold text-xl text-[#1B1A1ACC]">
                   Supplier
@@ -111,7 +117,7 @@ const AddCoffee = () => {
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="flex flex-col gap-4">
                 <label className="font-semibold text-xl text-[#1B1A1ACC]">
                   Price
@@ -142,7 +148,7 @@ const AddCoffee = () => {
                 Photo URL
               </label>
               <input
-                name="photoUrl"
+                name="photo"
                 className="py-3 px-3 bg-white rounded-lg w-full outline-none"
                 type="text"
                 placeholder="Enter Photo URL"
