@@ -13,7 +13,6 @@ const UpdateCoffee = () => {
     const form = e.target;
     const formData = new FormData(form);
     const updatedCoffee = Object.fromEntries(formData.entries());
-    console.log("update coffee", updatedCoffee);
 
     //  send updated coffee
 
@@ -35,7 +34,6 @@ const UpdateCoffee = () => {
             timer: 1400,
           });
         }
-        console.log("after update data", data);
       });
   };
 

@@ -7,7 +7,6 @@ import Swal from "sweetalert2";
 
 const SignUp = () => {
   const { createUser } = useContext(AuthContext);
-  console.log(createUser);
 
   const hendleSignUp = (e) => {
     e.preventDefault();
@@ -21,7 +20,6 @@ const SignUp = () => {
     //create user in the firebase
     createUser(email, password)
       .then((result) => {
-        console.log(result);
 
         const userProfile = {
           email,
@@ -41,7 +39,6 @@ const SignUp = () => {
         })
           .then((res) => res.json())
           .then((data) => {
-            console.log("after profile save", data);
             if (data.insertedId) {
               Swal.fire({
                 position: "center",

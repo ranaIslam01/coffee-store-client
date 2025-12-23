@@ -8,8 +8,6 @@ const CoffeeCard = ({ coffee, coffees, setCoffees }) => {
   const { _id, name, price, photo, quantity, supplier } = coffee;
 
   const handleDelete = (_id) => {
-    console.log("Delete coffee:", name);
-    console.log("Coffee ID:", _id);
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",

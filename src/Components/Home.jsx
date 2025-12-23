@@ -10,7 +10,6 @@ import Contuct from "./Contuct";
 const Home = () => {
   const initialCoffees = useLoaderData();
   const [coffees, setCoffees] = useState(initialCoffees);
-  console.log(coffees);
 
   return (
     <>

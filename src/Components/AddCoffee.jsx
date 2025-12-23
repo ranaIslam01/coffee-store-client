@@ -10,7 +10,6 @@ const AddCoffee = () => {
     const form = e.target;
     const formData = new FormData(form);
     const newCoffee = Object.fromEntries(formData.entries());
-    console.log(newCoffee);
     // send coffee data to the db
     fetch("https://coffee-store-server-1-t0pq.onrender.com/coffees", {
       method: "POST",
@@ -22,7 +21,6 @@ const AddCoffee = () => {
       .then((res) => res.json())
       .then((data) => {
         if (data.insertedId) {
-          console.log("added successfully");
           Swal.fire({
             title: "Coffee added successfully!",
             icon: "success",

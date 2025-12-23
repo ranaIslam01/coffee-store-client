@@ -7,7 +7,6 @@ const CoffeeDetails = () => {
   const navigate = useNavigate();
 
   const coffee = useLoaderData();
-  console.log(coffee);
   const { photo, name, details, price, quantity, supplier, taste } = coffee;
   return (
     <div className="pt-10">
