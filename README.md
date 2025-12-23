@@ -45,24 +45,6 @@ A modern, responsive Coffee Store application built with React, Firebase, and Ta
 - **Authentication Service**: Firebase
 
 ---
-
-## 📋 Prerequisites
-
-Before you begin, make sure you have installed:
-
-- **Node.js** (v14 or higher)
-- **npm** or **yarn**
-
----
-
-## 🚀 Installation & Setup
-
-1. **Clone the repository**:
-
-   ```bash
-   git clone <repository-url>
-   cd "Programing hero/Coffee Store 2/Client"
-   ```
    
 ---
 
@@ -106,6 +88,24 @@ src/
 ```
 
 ---
+
+## 📋 Prerequisites
+
+Before you begin, make sure you have installed:
+
+- **Node.js** (v14 or higher)
+- **npm** or **yarn**
+
+---
+
+## 🚀 Installation & Setup
+
+1. **Clone the repository**:
+
+   ```bash
+   git clone <repository-url>
+   cd "Programing hero/Coffee Store 2/Client"
+   ```
 
 
 2. **Install dependencies**:
