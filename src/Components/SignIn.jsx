@@ -1,9 +1,48 @@
-import React from "react";
+import { useContext } from "react";
 import coffeeBg from "../assets/images/more/coffeeBg.png";
 import { IoMdArrowBack } from "react-icons/io";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../Context/AuthContext";
 
 const SignIn = () => {
+
+  const {signInUser} = useContext(AuthContext);
+
+  const handleSignIN = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    console.log(email,password); 
+
+    signInUser(email,password)
+    .then(result => {
+      console.log(result.user);
+      const signInInfo = {
+        email,
+        lastSignInTime: result.user?.metadata?.lastSignInTime,
+      }
+
+
+      //update last sign in to the database
+      fetch('http://localhost:3000/users',{
+        method: "PATCH",
+        headers: {
+          'content-type': 'application/json',
+        },
+        body: JSON.stringify(signInInfo),
+      })
+      .then(res => res.json())
+      .then(data => {
+        console.log("after update last sign in", data);
+      })
+
+    })
+    .catch(error => {
+      console.log(error);
+    })
+  }
+
   return (
     <div className="pt-10 md:pt-18">
       <div
@@ -30,7 +69,7 @@ const SignIn = () => {
           <h1 className="text-center text-2xl sm:text-4xl md:text-[56px] text-[#374151] my-text rancho">
             Sign in Now!
           </h1>
-          <form className="flex flex-col gap-4 md:gap-6 mt-4 md:mt-6">
+          <form onSubmit={handleSignIN} className="flex flex-col gap-4 md:gap-6 mt-4 md:mt-6">
             <div className="flex flex-col gap-2 md:gap-4">
               <label className="font-semibold my-text rancho text-sm md:text-lg text-[#1B1A1ACC]">
                 Email
@@ -56,7 +95,7 @@ const SignIn = () => {
               />
             </div>
             <button
-              type="button"
+              type="submit"
               className="text-base md:text-xl text-[#331A15] my-text border-2 border-[#331A15] rancho w-full py-2 md:py-3 rounded-lg bg-[#D2B48C] cursor-pointer hover:bg-[#c9a876] duration-300"
             >
               Sign in

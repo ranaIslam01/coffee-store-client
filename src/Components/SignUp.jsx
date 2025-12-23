@@ -1,9 +1,63 @@
-import React from "react";
+import React, { useContext } from "react";
 import coffeeBg from "../assets/images/more/coffeeBg.png";
 import { IoMdArrowBack } from "react-icons/io";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../Context/AuthContext";
+import Swal from "sweetalert2";
 
 const SignUp = () => {
+  const { createUser } = useContext(AuthContext);
+  console.log(createUser);
+
+  const hendleSignUp = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const formData = new FormData(form);
+
+    const { email, password, ...restFromData } = Object.fromEntries(
+      formData.entries()
+    );
+
+    //create user in the firebase
+    createUser(email, password)
+      .then((result) => {
+        console.log(result);
+
+        const userProfile = {
+          email,
+          ...restFromData,
+          creationTime: result.user?.metadata?.creationTime,
+          lastSignInTime: result.user?.metadata?.lastSignInTime,
+
+        };
+
+        //save profile info in the db
+
+        fetch("http://localhost:3000/users", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(userProfile),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log("after profile save", data);
+            if (data.insertedId) {
+              Swal.fire({
+                position: "center",
+                icon: "success",
+                title: "Your account is created.",
+                showConfirmButton: false,
+                timer: 1500,
+              });
+            }
+          });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
   return (
     <div className="pt-10 md:pt-18">
       <div
@@ -30,7 +84,10 @@ const SignUp = () => {
           <h1 className="text-center text-2xl sm:text-4xl md:text-[56px] text-[#374151] my-text rancho">
             Sign Up Now!
           </h1>
-          <form className="flex flex-col gap-4 md:gap-6 mt-4 md:mt-6">
+          <form
+            onSubmit={hendleSignUp}
+            className="flex flex-col gap-4 md:gap-6 mt-4 md:mt-6"
+          >
             <div className="grid grid-cols-1 gap-4 md:gap-6">
               <div className="flex flex-col gap-2 md:gap-4">
                 <label className="font-semibold my-text rancho text-sm md:text-lg text-[#1B1A1ACC]">
@@ -106,7 +163,7 @@ const SignUp = () => {
               />
             </div>
             <button
-              type="button"
+              type="submit"
               className="text-base md:text-xl text-[#331A15] my-text border-2 border-[#331A15] rancho w-full py-2 md:py-3 rounded-lg bg-[#D2B48C] cursor-pointer hover:bg-[#c9a876] duration-300"
             >
               Sign Up

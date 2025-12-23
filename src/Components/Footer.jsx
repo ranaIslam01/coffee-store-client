@@ -5,7 +5,7 @@ import Contuct from "./Contuct";
 
 const Footer = () => {
   return (
-    <footer
+     <footer
       style={{
         backgroundImage: `url(${footerBg})`,
         backgroundSize: "cover",

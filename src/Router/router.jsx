@@ -48,6 +48,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "users",
+        loader: () => fetch(`http://localhost:3000/users`),
         Component: Users,
       },
     ],
