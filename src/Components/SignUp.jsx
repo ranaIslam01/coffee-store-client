@@ -55,7 +55,7 @@ const SignUp = () => {
       });
   };
   return (
-    <div className="pt-10 md:pt-18">
+    <div className="pt-4 md:pt-10">
       <div
         className="px-4 sm:px-6 md:px-[10%] lg:px-[15%] py-8 md:py-12.5"
         style={{
@@ -76,7 +76,7 @@ const SignUp = () => {
         </button>
 
         {/* SignUp Form */}
-        <div className="px-4 sm:px-6 md:px-10 w-full sm:w-5/6 md:w-2/3 mx-auto py-8 md:py-17.5 bg-[#F4F3F0] mt-8 rounded-2xl">
+        <div className="px-4 sm:px-6 md:px-10 w-full sm:w-5/6 md:w-2/3 mx-auto py-2 md:py-10 bg-[#F4F3F0] mt-8 rounded-2xl">
           <h1 className="text-center text-2xl sm:text-4xl md:text-[56px] text-[#374151] my-text rancho">
             Sign Up Now!
           </h1>

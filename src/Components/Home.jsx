@@ -34,7 +34,7 @@ const Home = () => {
 
         {/* Add Coffee Button UI only */}
         <div className="flex justify-center items-center">
-          <button className="flex items-center py-3 px-5 border-2 border-[#331A15] rounded-lg cursor-pointer bg-[#E3B577]">
+          <button className="flex items-center mt-4 py-3 px-5 border-2 border-[#331A15] rounded-lg cursor-pointer bg-[#E3B577]">
             <Link to="/addCoffee">
               <p className="text-xl rancho my-text">Add Coffee</p>
             </Link>

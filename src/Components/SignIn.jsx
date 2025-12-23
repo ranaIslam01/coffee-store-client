@@ -1,12 +1,13 @@
 import { useContext } from "react";
 import coffeeBg from "../assets/images/more/coffeeBg.png";
 import { IoMdArrowBack } from "react-icons/io";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom"; // Added useNavigate
 import { AuthContext } from "../Context/AuthContext";
 import { toast, ToastContainer } from "react-toastify";
 
 const SignIn = () => {
   const { signInUser } = useContext(AuthContext);
+  const navigate = useNavigate(); // Initialize navigate
 
   const handleSignIN = (e) => {
     e.preventDefault();
@@ -16,15 +17,16 @@ const SignIn = () => {
 
     signInUser(email, password)
       .then((result) => {
-        toast.success("SignIn Successfull!");
+        // Success Toast
+        toast.success("SignIn Successful!");
+        
+        // Corrected object structure
         const signInInfo = {
           email,
           lastSignInTime: result.user?.metadata?.lastSignInTime,
-        }.catch((error) => {
-          toast.error(error);
-        });
+        };
 
-        //update last sign in to the database
+        // Update last sign in to the database
         fetch("https://coffee-store-server-1-t0pq.onrender.com/users", {
           method: "PATCH",
           headers: {
@@ -34,16 +36,23 @@ const SignIn = () => {
         })
           .then((res) => res.json())
           .then((data) => {
-            console.log("after update last sign in", data);
+            console.log("Database updated:", data);
+            
+            // Navigate to home after successful DB update and login
+            // Using a slight delay or direct call
+            setTimeout(() => {
+                navigate('/');
+            }, 100); 
           });
       })
       .catch((error) => {
-        console.log(error);
+        console.error("Login Error:", error);
+        toast.error(error.message); // Show actual firebase error
       });
   };
 
   return (
-    <div className="pt-10 md:pt-18">
+    <div className="">
       <ToastContainer />
       <div
         className="px-4 sm:px-6 md:px-[10%] lg:px-[15%] py-8 md:py-12.5"
@@ -53,19 +62,19 @@ const SignIn = () => {
           backgroundPosition: "center",
         }}
       >
-        {/* Back Button UI only */}
-        <button className="flex gap-3 items-center px-5 py-3 rounded-xl hover:bg-[#E3B577] duration-500 cursor-pointer">
+        {/* Back Button */}
+        <button 
+          onClick={() => navigate('/')} // Added click handler to navigate back
+          className="flex gap-3 items-center px-5 py-3 rounded-xl hover:bg-[#E3B577] duration-500 cursor-pointer"
+        >
           <IoMdArrowBack className="text-xl" />
-          <Link
-            to="/"
-            className="text-sm md:text-xl rancho text-[#374151] my-text"
-          >
+          <span className="text-sm md:text-xl rancho text-[#374151] my-text">
             Back To Home
-          </Link>
+          </span>
         </button>
 
         {/* SignIn Form */}
-        <div className="px-4 sm:px-6 md:px-10 w-full sm:w-5/6 md:w-2/3 mx-auto py-8 md:py-17.5 bg-[#F4F3F0] mt-8 rounded-2xl">
+        <div className="px-4 sm:px-6 md:px-10 w-full sm:w-5/6 md:w-2/3 mx-auto py-4 md:py-10 bg-[#F4F3F0] mt-8 rounded-2xl shadow-lg">
           <h1 className="text-center text-2xl sm:text-4xl md:text-[56px] text-[#374151] my-text rancho">
             Sign in Now!
           </h1>
@@ -79,8 +88,8 @@ const SignIn = () => {
               </label>
               <input
                 required
-                className="py-2 md:py-3 px-3 bg-white rounded-lg w-full outline-none text-sm md:text-base"
-                type="text"
+                className="py-2 md:py-3 px-3 bg-white rounded-lg w-full outline-none text-sm md:text-base border border-transparent focus:border-[#D2B48C]"
+                type="email" // Changed type to email
                 name="email"
                 placeholder="Enter Your Email"
               />
@@ -91,7 +100,7 @@ const SignIn = () => {
               </label>
               <input
                 required
-                className="py-2 md:py-3 px-3 bg-white rounded-lg w-full outline-none text-sm md:text-base"
+                className="py-2 md:py-3 px-3 bg-white rounded-lg w-full outline-none text-sm md:text-base border border-transparent focus:border-[#D2B48C]"
                 type="password"
                 name="password"
                 placeholder="Enter Your Password"
@@ -107,7 +116,7 @@ const SignIn = () => {
             <h3 className="text-center font-medium mt-2 md:mt-4 text-sm md:text-base">
               You don't have an account?{" "}
               <Link to="/signup">
-                <span className="rancho my-text cursor-pointer hover:underline">
+                <span className="rancho my-text cursor-pointer hover:underline text-orange-900">
                   Sign Up
                 </span>
               </Link>

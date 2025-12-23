@@ -8,24 +8,15 @@ import SignUp from "../Components/SignUp";
 import Users from "../Components/Users";
 import CoffeeDetails from "../Components/CoffeeDetails";
 import ErrorPage from "../Components/ErrorPage";
+import Loading from "../Loading/Loading";
+import PrivateRoute from "../PrivetRoute/PrivateRoute";
 
-// একটি প্রফেশনাল রিঅ্যাক্ট স্পিনার কম্পোনেন্ট
-const LoadingSpinner = () => {
-  return (
-    <div className="flex flex-col justify-center items-center min-h-screen bg-gray-50">
-      {/* Tailwind CSS Spinner */}
-      <div className="w-16 h-16 border-4 border-dashed rounded-full animate-spin border-orange-600"></div>
-      <h2 className="mt-4 text-xl font-semibold text-gray-700">Loading coffee...</h2>
-    </div>
-  );
-};
 
 export const router = createBrowserRouter([
   {
     path: "/",
     Component: MainLayout,
-    // HydrateFallback এখানে লোডিং স্পিনারটি সেট করা হয়েছে
-    HydrateFallback: LoadingSpinner,
+    HydrateFallback: Loading,
     children: [
       {
         index: true,
@@ -35,7 +26,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "addCoffee",
-        Component: AddCoffee,
+        element: <AddCoffee></AddCoffee>
       },
       {
         path: "*",
@@ -55,7 +46,9 @@ export const router = createBrowserRouter([
           fetch(
             `https://coffee-store-server-1-t0pq.onrender.com/coffees/${params.id}`
           ),
-        Component: UpdateCoffee,
+        element: <PrivateRoute>
+          <UpdateCoffee></UpdateCoffee>
+        </PrivateRoute>
       },
       {
         path: "signin",
@@ -69,7 +62,9 @@ export const router = createBrowserRouter([
         path: "users",
         loader: () =>
           fetch(`https://coffee-store-server-1-t0pq.onrender.com/users`),
-        Component: Users,
+        element: <PrivateRoute>
+          <Users></Users>
+        </PrivateRoute>
       },
     ],
   },
