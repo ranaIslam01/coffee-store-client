@@ -63,6 +63,50 @@ Before you begin, make sure you have installed:
    git clone <repository-url>
    cd "Programing hero/Coffee Store 2/Client"
    ```
+   
+---
+
+## 📁 Project Structure
+
+```
+src/
+├── Components/          # Reusable React components
+│   ├── Navbar.jsx      # Navigation bar with hamburger menu
+│   ├── Home.jsx        # Home page
+│   ├── AddCoffee.jsx   # Add new coffee form
+│   ├── CoffeeCard.jsx  # Coffee product card
+│   ├── CoffeeDetails.jsx # Detailed coffee view
+│   ├── UpdateCoffee.jsx # Edit coffee product
+│   ├── Users.jsx       # User management
+│   ├── SignIn.jsx      # Login page
+│   ├── SignUp.jsx      # Registration page
+│   ├── Contuct.jsx     # Contact form
+│   ├── Header.jsx      # Page header
+│   ├── Hero.jsx        # Hero section
+│   ├── Footer.jsx      # Footer component
+│   ├── InstagramImage.jsx # Instagram feed
+│   ├── ErrorPage.jsx   # 404 error page
+│   └── Loading.jsx     # Loading spinner
+├── Context/            # React Context API
+│   ├── AuthContext.jsx # Auth context setup
+│   └── AuthProvider.jsx # Auth provider wrapper
+├── firebase/           # Firebase configuration
+│   └── firebase.init.js
+├── Layouts/            # Page layouts
+│   └── MainLayout.jsx
+├── PrivetRoute/        # Protected routes
+│   └── PrivateRoute.jsx
+├── Router/             # Route configuration
+│   └── router.jsx
+├── assets/             # Images and static files
+│   └── images/
+├── App.jsx             # Main App component
+├── main.jsx            # Entry point
+└── index.css           # Global styles
+```
+
+---
+
 
 2. **Install dependencies**:
 
@@ -131,49 +175,6 @@ npm run build
 ```bash
 npm run preview
 ```
-
----
-
-## 📁 Project Structure
-
-```
-src/
-├── Components/          # Reusable React components
-│   ├── Navbar.jsx      # Navigation bar with hamburger menu
-│   ├── Home.jsx        # Home page
-│   ├── AddCoffee.jsx   # Add new coffee form
-│   ├── CoffeeCard.jsx  # Coffee product card
-│   ├── CoffeeDetails.jsx # Detailed coffee view
-│   ├── UpdateCoffee.jsx # Edit coffee product
-│   ├── Users.jsx       # User management
-│   ├── SignIn.jsx      # Login page
-│   ├── SignUp.jsx      # Registration page
-│   ├── Contuct.jsx     # Contact form
-│   ├── Header.jsx      # Page header
-│   ├── Hero.jsx        # Hero section
-│   ├── Footer.jsx      # Footer component
-│   ├── InstagramImage.jsx # Instagram feed
-│   ├── ErrorPage.jsx   # 404 error page
-│   └── Loading.jsx     # Loading spinner
-├── Context/            # React Context API
-│   ├── AuthContext.jsx # Auth context setup
-│   └── AuthProvider.jsx # Auth provider wrapper
-├── firebase/           # Firebase configuration
-│   └── firebase.init.js
-├── Layouts/            # Page layouts
-│   └── MainLayout.jsx
-├── PrivetRoute/        # Protected routes
-│   └── PrivateRoute.jsx
-├── Router/             # Route configuration
-│   └── router.jsx
-├── assets/             # Images and static files
-│   └── images/
-├── App.jsx             # Main App component
-├── main.jsx            # Entry point
-└── index.css           # Global styles
-```
-
----
 
 ## � Backend Setup (Express.js + MongoDB)
 
