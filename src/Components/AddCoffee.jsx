@@ -12,7 +12,7 @@ const AddCoffee = () => {
     const newCoffee = Object.fromEntries(formData.entries());
     console.log(newCoffee);
     // send coffee data to the db
-    fetch("http://localhost:3000/coffees", {
+    fetch("https://coffee-store-server-1-t0pq.onrender.com/coffees", {
       method: "POST",
       headers: {
         "content-type": "application/json",

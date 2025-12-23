@@ -3,48 +3,50 @@ import coffeeBg from "../assets/images/more/coffeeBg.png";
 import { IoMdArrowBack } from "react-icons/io";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../Context/AuthContext";
+import { toast, ToastContainer } from "react-toastify";
 
 const SignIn = () => {
-
-  const {signInUser} = useContext(AuthContext);
+  const { signInUser } = useContext(AuthContext);
 
   const handleSignIN = (e) => {
     e.preventDefault();
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
-    console.log(email,password); 
+    console.log(email, password);
 
-    signInUser(email,password)
-    .then(result => {
-      console.log(result.user);
-      const signInInfo = {
-        email,
-        lastSignInTime: result.user?.metadata?.lastSignInTime,
-      }
+    signInUser(email, password)
+      .then((result) => {
+        console.log(result.user);
+        toast.success("SignIn Successfull!");
+        const signInInfo = {
+          email,
+          lastSignInTime: result.user?.metadata?.lastSignInTime,
+        }.catch((error) => {
+          toast.error(error);
+        });
 
-
-      //update last sign in to the database
-      fetch('http://localhost:3000/users',{
-        method: "PATCH",
-        headers: {
-          'content-type': 'application/json',
-        },
-        body: JSON.stringify(signInInfo),
+        //update last sign in to the database
+        fetch("https://coffee-store-server-1-t0pq.onrender.com/users", {
+          method: "PATCH",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(signInInfo),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log("after update last sign in", data);
+          });
       })
-      .then(res => res.json())
-      .then(data => {
-        console.log("after update last sign in", data);
-      })
-
-    })
-    .catch(error => {
-      console.log(error);
-    })
-  }
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   return (
     <div className="pt-10 md:pt-18">
+      <ToastContainer />
       <div
         className="px-4 sm:px-6 md:px-[10%] lg:px-[15%] py-8 md:py-12.5"
         style={{
@@ -69,7 +71,10 @@ const SignIn = () => {
           <h1 className="text-center text-2xl sm:text-4xl md:text-[56px] text-[#374151] my-text rancho">
             Sign in Now!
           </h1>
-          <form onSubmit={handleSignIN} className="flex flex-col gap-4 md:gap-6 mt-4 md:mt-6">
+          <form
+            onSubmit={handleSignIN}
+            className="flex flex-col gap-4 md:gap-6 mt-4 md:mt-6"
+          >
             <div className="flex flex-col gap-2 md:gap-4">
               <label className="font-semibold my-text rancho text-sm md:text-lg text-[#1B1A1ACC]">
                 Email

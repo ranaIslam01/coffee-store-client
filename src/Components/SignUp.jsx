@@ -28,12 +28,11 @@ const SignUp = () => {
           ...restFromData,
           creationTime: result.user?.metadata?.creationTime,
           lastSignInTime: result.user?.metadata?.lastSignInTime,
-
         };
 
         //save profile info in the db
 
-        fetch("http://localhost:3000/users", {
+        fetch("https://coffee-store-server-1-t0pq.onrender.com/users", {
           method: "POST",
           headers: {
             "content-type": "application/json",

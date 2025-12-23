@@ -17,7 +17,7 @@ const UpdateCoffee = () => {
 
     //  send updated coffee
 
-    fetch(`http://localhost:3000/coffees/${_id}`, {
+    fetch(`https://coffee-store-server-1-t0pq.onrender.com/coffees/${_id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",
