@@ -136,15 +136,15 @@ const NavBar = () => {
         </div>
       </div>
       {user ? (
-        <div className="flex items-center gap-3">
-          {/* optional: show user photo if available */}
-          {/* <img className='bg-white h-10 w-10 object-cover rounded-full' src={user?.photoURL} alt="User" /> */}
+        <div className="md:block hidden">
+          <div className="flex items-center gap-3">
           <button
             onClick={handleSignOut}
             className="md:py-3 py-1 px-4  md:px-10 cursor-pointer bg-white rancho my-text rounded-xl md:rounded-full"
           >
             Log Out
           </button>
+        </div>
         </div>
       ) : (
         <div className="md:block hidden">
